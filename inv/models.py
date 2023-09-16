@@ -15,4 +15,4 @@ class Categoria(ClaseModelo):
         super(Categoria, self).save()
 
     class Meta:
-        verbose_name_plural = "categirias"
+        verbose_name_plural = "categorias"
