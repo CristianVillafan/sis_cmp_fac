@@ -8,6 +8,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Arketa's Store</title>
+        {% block link %}{% endblock %}
         <link href="{% static 'base/css/styles.css' %}" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
@@ -58,8 +59,14 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="{% url 'inv:categoria_list' %}">Categorias</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
+                                    <a class="nav-link" href="{% url 'inv:categoria_list' %}">
+                                        Categorias</a>
+                                    <a class="nav-link" href="{% url 'inv:subcategoria_list' %}">
+                                        Sub Categorias</a>
+                                    <a class="nav-link" href="{% url 'inv:marca_list' %}">
+                                        Marcas</a>
+                                    <a class="nav-link" href="{% url 'inv:unidad_medida_list' %}">
+                                        Unidades de medida</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
