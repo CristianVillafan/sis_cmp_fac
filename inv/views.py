@@ -1,5 +1,5 @@
-from .models import Categoria, SubCategoria, Marca, UnidadMedida
-from .forms import CategoriaForm, SubCategoriaForm, MarcaForm, UnidadMedidaForm
+from .models import Categoria, SubCategoria, Marca, UnidadMedida, Producto
+from .forms import CategoriaForm, SubCategoriaForm, MarcaForm, UnidadMedidaForm, ProductoForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 from django.urls import reverse_lazy
@@ -148,7 +148,7 @@ class UnidadMedidaEdit(LoginRequiredMixin, generic.UpdateView):
     model = UnidadMedida
     template_name="inv/unidadmedida_form.html"
     context_object_name = "obj"
-    form_class = CategoriaForm
+    form_class = UnidadMedidaForm
     success_url = reverse_lazy("inv:unidad_medida_list")
     login_url = "bases:login"
 
@@ -157,18 +157,65 @@ class UnidadMedidaEdit(LoginRequiredMixin, generic.UpdateView):
         return super().form_valid(form)
     
 def unidad_medida_inactive(request, id):
-    marca = UnidadMedida.objects.filter(pk=id).first()
+    unidad_medida = UnidadMedida.objects.filter(pk=id).first()
     contexto = {}
     template_name = "inv/catalogos_del.html"
-    if not marca:
+    if not unidad_medida:
         return redirect("inv:unidad_medida_list")
     
     if request.method == 'GET':
-        contexto = {'obj':marca}
+        contexto = {'obj':unidad_medida}
 
     if request.method == 'POST':
-        marca.estado = False
-        marca.save()
+        unidad_medida.estado = False
+        unidad_medida.save()
         return redirect("inv:unidad_medida_list")
+
+    return render(request, template_name,contexto)
+
+class ProductoView(LoginRequiredMixin, generic.ListView):
+    model = Producto
+    template_name = "inv/producto_list.html"
+    context_object_name = "obj"
+    login_url = 'bases:login'
+
+class ProductoNew(LoginRequiredMixin, generic.CreateView):
+    model = Producto
+    template_name="inv/producto_form.html"
+    context_object_name = "obj"
+    form_class = ProductoForm
+    success_url = reverse_lazy("inv:producto_list")
+    login_url = "bases:login"
+
+    def form_valid(self, form):
+        form.instance.uc = self.request.user
+        return super().form_valid(form)
+
+class ProductoEdit(LoginRequiredMixin, generic.UpdateView):
+    model = Producto
+    template_name="inv/producto_form.html"
+    context_object_name = "obj"
+    form_class = ProductoForm
+    success_url = reverse_lazy("inv:producto_list")
+    login_url = "bases:login"
+
+    def form_valid(self, form):
+        form.instance.um = self.request.user.id
+        return super().form_valid(form)
+    
+def producto_inactive(request, id):
+    producto = Producto.objects.filter(pk=id).first()
+    contexto = {}
+    template_name = "inv/catalogos_del.html"
+    if not producto:
+        return redirect("inv:unidad_medida_list")
+    
+    if request.method == 'GET':
+        contexto = {'obj':producto}
+
+    if request.method == 'POST':
+        producto.estado = False
+        producto.save()
+        return redirect("inv:producto_list")
 
     return render(request, template_name,contexto)
