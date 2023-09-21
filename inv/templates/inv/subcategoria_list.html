@@ -3,7 +3,6 @@
 {% block link %}
     <link href="{% static 'base/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'base/css/sb-admin-2.min.css' %}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
     <link rel="stylesheet" href="http://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 {% endblock %}
@@ -19,7 +18,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                     <div class="dropdown-header">Acciones:</div>
-                    <a class="dropdown-item" href="{% url 'inv:subcategoria_new' %}">Nueva</a>
+                    <a class="dropdown-item" onclick="return abrir_modal('{% url 'inv:subcategoria_new' %}')" href="#">Nueva</a>
                     <a class="dropdown-item" href="#">Another action</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Something else here</a>
@@ -60,7 +59,7 @@
                                         <a href="{% url 'inv:subcategoria_del' item.id %}" class="btn btn-danger">
                                             <i class="bi bi-eye-slash-fill"></i>
                                         </a>
-                                        <a href="{% url 'inv:subcategoria_edit' item.id %}" class="btn btn-warning">
+                                        <a onclick="return abrir_modal('{% url 'inv:subcategoria_edit' item.id %}')" href="#" class="btn btn-warning">
                                             <i class="bi bi-pencil" style="color: white;"></i>
                                         </a>
                                     </td>

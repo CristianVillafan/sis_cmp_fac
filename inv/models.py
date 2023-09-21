@@ -71,9 +71,9 @@ class Producto(ClaseModelo):
         unique=True
     )
     codigo_barra = models.CharField(max_length=50)
-    descripcion=models.CharField(200)
+    descripcion=models.CharField(max_length=200)
     precio=models.FloatField()
-    existencia=models.IntegerField()
+    existencia=models.IntegerField(null=True, blank=True)
     ultima_compra=models.DateField(null=True, blank=True)
 
     marca =models.ForeignKey(Marca, on_delete=models.CASCADE)
