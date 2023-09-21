@@ -208,7 +208,7 @@ def producto_inactive(request, id):
     contexto = {}
     template_name = "inv/catalogos_del.html"
     if not producto:
-        return redirect("inv:unidad_medida_list")
+        return redirect("inv:producto_list")
     
     if request.method == 'GET':
         contexto = {'obj':producto}
