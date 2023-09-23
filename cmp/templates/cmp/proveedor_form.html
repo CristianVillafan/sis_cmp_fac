@@ -1,38 +1,38 @@
 <div class="modal-dialog modal-lg">
     <div class="modal-content">
         {% if obj %}
-        <form method='POST' role="form" class="form" action="{% url 'inv:producto_edit' obj.pk %}">
+        <form method='POST' role="form" class="form" action="{% url 'cmp:proveedor_edit' obj.pk %}">
         {% else %}
-        <form method='POST' role="form" class="form" action="{% url 'inv:producto_new' %}">
+        <form method='POST' role="form" class="form" action="{% url 'cmp:proveedor_new' %}">
         {% endif %}
             {% csrf_token %}
-            <div class="col-xl-12 col-md-12 mb-12">
+            <div class="container-flex" style="margin: 10px;">
                 {% if obj %}
                     <div class="card border-left-warning shadow h-100 py-2">
                 {% else %}
                     <div class="card border-left-success shadow h-100 py-2">
                 {% endif %}
-                    <div class="card-body">
-                        <div class="row no-gutters">
+                    <div class="card-body mb-4">
+                        <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 {% if obj %}
                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                    Editar producto
+                                    Editar proveedor
                                 </div>
                                 {% else %}
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                    Nuevo producto
+                                    Nuevo proveedor
                                 </div>
                                 {% endif %}
                                 <div class="dropdown-divider"></div>
-                                <div class="container text-center">
+                                <div class="container">
                                     {{ form.as_p }}
+                                    <div class="col text-center">
+                                        <button type="submit" class="btn btn-success"><span class="fa fa-save"></span> Guardar</button>
+                                        <button type="button" class="btn btn-danger" onclick="return cerrar_modal()"><span class="fa fa-undo"></span> Cancelar</button>
+                                    </div>
                                 </div>
-                                <div class="col text-center">
-                                    <button type="submit" class="btn btn-success"><span class="fa fa-save"></span> Guardar</button>
-                                    <button type="button" class="btn btn-danger" onclick="return cerrar_modal()"><span class="fa fa-undo"></span> Cancelar</button>
-                                </div>
-                            </div> 
+                            </div>
                         </div>
                     </div>
                 </div>
