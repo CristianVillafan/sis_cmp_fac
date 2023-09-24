@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from .models import Proveedor
+from django.http import HttpResponse
 from .forms import ProveedorForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
+import json
 
 class ProveedorView(LoginRequiredMixin, generic.ListView):
     model=Proveedor
@@ -36,8 +38,21 @@ class ProveedorEdit(LoginRequiredMixin, generic.UpdateView):
         return super().form_valid(form)
 
 def proveedor_inactive(request, id):
-    proveedor = Proveedor.objects.filter(pk=id).first()
+    proveedor=Proveedor.objects.filter(pk=id).first()
     contexto = {}
-    template_name = 'inv/catalogos_del.html'
+    template_name = 'cmp/inactivate.html'
 
+    if not proveedor:
+        return HttpResponse("Proveedor no existe"+ str(id))
+    
+    if request.method == 'GET':
+        contexto = {'obj':proveedor}
+
+    if request.method == 'POST':
+        proveedor.estado = False
+        proveedor.save()
+        contexto={'obj':'Ok'}
+        return HttpResponse("Proveedor inactivado")
+
+    return render(request, template_name, contexto)
 # Create your views here.

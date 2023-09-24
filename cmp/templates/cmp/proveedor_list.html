@@ -60,10 +60,10 @@
                                     <td>{{ item.email }}</td>
                                     <td>{{ item.estado|yesno:"Activo,Inactivo" }}</td>
                                     <td>
-                                        <a href="{% url 'inv:categoria_del' item.id %}" class="btn btn-danger">
+                                        <a onclick="return abrir_modal('{% url 'cmp:proveedor_inactive' item.id %}')" href="#" class="btn btn-warning">
                                             <i class="bi bi-trash"></i>
                                         </a>
-                                        <a onclick="return abrir_modal('{% url 'cmp:proveedor_edit' item.id %}')" href="#" class="btn btn-warning">
+                                        <a onclick="return abrir_modal('{% url 'cmp:proveedor_edit' item.id %}')" href="#" class="btn btn-success">
                                             <i class="bi bi-pencil" style="color: white;"></i>
                                         </a>
                                     </td>
