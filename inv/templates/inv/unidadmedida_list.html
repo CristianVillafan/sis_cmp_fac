@@ -18,7 +18,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                     <div class="dropdown-header">Acciones:</div>
-                    <a class="dropdown-item" onclick="return abrir_modal('{% url 'inv:unidad_medida_new' %}')" href="#">Nueva</a>
+                    <a class="dropdown-item" onclick="return abrir_modal('{% url 'inv:unidad_medida_new' %}')" href="#"><span class="bi bi-plus-circle"></span> Nueva unidad de medida</a>
                     <a class="dropdown-item" href="#">Another action</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Something else here</a>
@@ -72,7 +72,6 @@
     </div>
 {% endblock %}
 {% block js_page %}
-<script src="{% static 'base/vendor/jquery/jquery.min.js' %}"></script>
 <script src="{% static 'base/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'base/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
 <script src="{% static 'base/js/sb-admin-2.min.js' %}"></script>

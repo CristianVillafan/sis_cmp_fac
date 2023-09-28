@@ -1,0 +1,42 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block link %}
+<link href="{% static 'base/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'base/css/sb-admin-2.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="col-xl-12 col-md-12 mb-12 align-items-center" style="margin-top: 10px;">
+    <div class="card border-left-danger shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                        Usuario sin permisos
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <div class="class=text-xs font-weight-bold text-center  mb-1">
+                        Usuario: {{ user.username }} {{ user.ger.full.name }}
+                        <p>No tiene los permisos necesarios</p>
+                        <p>Para acceder tienes que iniciar sesión con un usuario con los permisos necesarios</p>
+                    </div>
+                </div>
+                <div class="col-row text-center">
+                    <a href="{% url 'bases:home' %}" class="btn btn-secondary"><span class="bi bi-house-door"></span> Inicio</a>
+                    <!--button type="submit" class="btn btn-danger"><span class="bi bi-trash"></span> Eliminar</button>
+                    <a href="{% url 'inv:categoria_list' %}" class="btn btn-warning" style="color: white;"><span class="fa fa-undo"></span> Cancelar</a -->
+                    <a href="{% url 'bases:login' %}" class="btn btn-success" style="color: white;"><span class="bi bi-box-arrow-in-right"></span> Iniciar sesión</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_page %}
+<script src="{% static 'base/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'base/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+<script src="{% static 'base/js/sb-admin-2.min.js' %}"></script>
+{% endblock %}

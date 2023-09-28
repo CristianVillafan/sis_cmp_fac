@@ -18,7 +18,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                     <div class="dropdown-header">Acciones:</div>
-                    <a class="dropdown-item" onclick="return abrir_modal('{% url 'inv:producto_new' %}')" href="#">Nuevo</a>
+                    <a class="dropdown-item" onclick="return abrir_modal('{% url 'inv:producto_new' %}')" href="#"><span class="bi bi-plus-circle"></span> Nuevo producto</a>
                     <div class="dropdown-divider"></div>
                 </div>
             </div>
@@ -57,13 +57,15 @@
                                     <td>{{ item.marca }}</td>
                                     <td>{{ item.unidad_medida }}</td>
                                     <td>{{ item.estado|yesno:"Activo,Inactivo" }}</td>
-                                    <td style="width: 100px;">
-                                        <a href="{% url 'inv:producto_inactive' item.id %}" class="btn btn-danger">
-                                            <i class="bi bi-eye-slash-fill"></i>
-                                        </a>
-                                        <a href="#" onclick="return abrir_modal('{% url 'inv:producto_edit' item.id %}')" class="btn btn-warning">
-                                            <i class="bi bi-pencil" style="color: white;"></i>
-                                        </a>
+                                    <td>
+                                        <div style="display: flex; justify-content: center;">
+                                            <a href="{% url 'inv:producto_inactive' item.id %}" class="btn btn-danger" style="margin-right: 5px;">
+                                                <i class="bi bi-eye-slash-fill"></i>
+                                            </a>
+                                            <a href="#" onclick="return abrir_modal('{% url 'inv:producto_edit' item.id %}')" class="btn btn-warning">
+                                                <i class="bi bi-pencil" style="color: white;"></i>
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -76,7 +78,6 @@
     </div>
 {% endblock %}
 {% block js_page %}
-<script src="{% static 'base/vendor/jquery/jquery.min.js' %}"></script>
 <script src="{% static 'base/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'base/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
 <script src="{% static 'base/js/sb-admin-2.min.js' %}"></script>
