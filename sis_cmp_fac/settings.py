@@ -53,7 +53,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'Arketa_store.urls'
+ROOT_URLCONF = 'sis_cmp_fac.urls'
 
 TEMPLATES = [
     {
@@ -71,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'Arketa_store.wsgi.application'
+WSGI_APPLICATION = 'sis_cmp_fac.wsgi.application'
 
 
 # Database
