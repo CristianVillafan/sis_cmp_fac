@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from .models import Proveedor
+from .models import Proveedor, ComprasDet, ComprasEnc
 from django.http import HttpResponse
 from .forms import ProveedorForm
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -61,3 +61,9 @@ def proveedor_inactive(request, id):
         return HttpResponse("Proveedor inactivado")
     
     return render(request, template_name, contexto)
+
+class ComprasView(SinPrivilegio, generic.ListView):
+    model=ComprasEnc
+    template_name='cmp/compras_list.html'
+    context_object_name='obj'
+    permission_required='cmp.view_comprasenc'

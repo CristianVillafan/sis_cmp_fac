@@ -55,3 +55,12 @@ class ComprasDet(ClaseModelo):
 
     def __str__(self):
         return '{}'.format(self.producto)
+
+    def save(self):
+        self.subtotal=float(float(int(self.cantidad))*float(self.precio_prv))
+        self.total=self.subtotal-float(self.descuento)
+        super(ComprasDet, self).save()
+
+    class Meta:
+        verbose_name_plural='Detalle compras'
+        verbose_name='Detalle compra'
