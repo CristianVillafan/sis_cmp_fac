@@ -6,6 +6,7 @@ from .forms import ProveedorForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required, permission_required
 import json
 from bases.views import SinPrivilegio
 
@@ -40,6 +41,8 @@ class ProveedorEdit(SinPrivilegio, generic.UpdateView):
         form.instance.um = self.request.user.id
         return super().form_valid(form)
 
+@login_required(login_url='/login/')
+@permission_required('inv.change_producto', login_url='bases:sin_privilegios')
 def proveedor_inactive(request, id):
     proveedor=Proveedor.objects.filter(pk=id).first()
     contexto = {}

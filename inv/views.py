@@ -162,7 +162,7 @@ class UnidadMedidaView(SinPrivilegio, generic.ListView):
     template_name = "inv/unidadmedida_list.html"
     context_object_name = "obj"
 
-class UnidadMedidaNew(LoginRequiredMixin, generic.CreateView):
+class UnidadMedidaNew(SinPrivilegio, generic.CreateView):
     permission_required='inv.add_unidadmedida'
     model = UnidadMedida
     template_name="inv/unidadmedida_form.html"
@@ -174,7 +174,7 @@ class UnidadMedidaNew(LoginRequiredMixin, generic.CreateView):
         form.instance.uc = self.request.user
         return super().form_valid(form)
 
-class UnidadMedidaEdit(LoginRequiredMixin, generic.UpdateView):
+class UnidadMedidaEdit(SinPrivilegio, generic.UpdateView):
     permission_required='inv.change_unidadmedida'
     model = UnidadMedida
     template_name="inv/unidadmedida_form.html"
@@ -211,7 +211,7 @@ class ProductoView(SinPrivilegio, generic.ListView):
     template_name = "inv/producto_list.html"
     context_object_name = "obj"
 
-class ProductoNew(LoginRequiredMixin, generic.CreateView):
+class ProductoNew(SinPrivilegio, generic.CreateView):
     permission_required='inv.add_producto'
     model = Producto
     template_name="inv/producto_form.html"
@@ -223,7 +223,7 @@ class ProductoNew(LoginRequiredMixin, generic.CreateView):
         form.instance.uc = self.request.user
         return super().form_valid(form)
 
-class ProductoEdit(LoginRequiredMixin, generic.UpdateView):
+class ProductoEdit(SinPrivilegio, generic.UpdateView):
     permission_required='inv.change_producto'
     model = Producto
     template_name="inv/producto_form.html"
