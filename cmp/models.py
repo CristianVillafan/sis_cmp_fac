@@ -11,7 +11,7 @@ class Proveedor(ClaseModelo):
     email=models.CharField(max_length=250, null=True, blank=True)
 
     def __str__(self):
-        return {}.format(self.descripcion)
+        return '{}'.format(self.descripcion)
     
     def save(self):
         self.descripcion=self.descripcion.upper()
@@ -21,10 +21,10 @@ class Proveedor(ClaseModelo):
         verbose_name_plural = "Proveedores"
 
 class ComprasEnc(ClaseModelo):
-    fecha_compra=models.DateField(null='True',blank='True')
-    observacion=models.TextField(null='True', blank='True')
+    fecha_compra=models.DateField(null=True,blank=True)
+    observacion=models.TextField(null=True, blank=True)
     n_factura=models.CharField(max_length=100)
-    fecha_factura=models.DateField(null=True, blank=True)
+    fecha_factura=models.DateField()
     subtotal=models.FloatField(default=0)
     descuento=models.FloatField(default=0)
     total=models.FloatField(default=0)
@@ -36,7 +36,7 @@ class ComprasEnc(ClaseModelo):
     
     def save(self):
         self.observacion=self.observacion.upper()
-        self.total=self.subtotal-self.descuento
+        self.total=self.subtotal - float(self.descuento)
         super(ComprasEnc, self).save()
 
     class Meta:
@@ -57,7 +57,7 @@ class ComprasDet(ClaseModelo):
         return '{}'.format(self.producto)
 
     def save(self):
-        self.subtotal=float(float(int(self.cantidad))*float(self.precio_prv))
+        self.subtotal=float(float(int(self.cantidad)) * float(self.precio_prv))
         self.total=self.subtotal-float(self.descuento)
         super(ComprasDet, self).save()
 

@@ -12,7 +12,8 @@
         <link href="{% static 'base/css/styles.css' %}" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
         <link href="{% static 'base/vendor/jquery_confirm/jquery-confirm.min.css' %}" rel="stylesheet"></link>
-        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" integrity="sha256-DOS9W6NR+NFe1fUhEE0PGKY/fubbUCnOfTje2JMDw3Y=" crossorigin="anonymous" />  
+
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
@@ -108,7 +109,6 @@
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small"></div>
-                        
                     </div>
                 </nav>
             </div>
@@ -140,7 +140,7 @@
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Compra y facturacion</div>
+                            <div class="text-muted">Copyright &copy; VillaCode Development</div>
                             <div>
                                 <a href="#">Politicas de privacidad</a>
                                 &middot;
@@ -165,7 +165,13 @@
 
         <script src="{% static 'base/js/scripts.js' %}"></script>
         <script src="{% static 'base/vendor/jquery_confirm/jquery-confirm.min.js' %}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous"></script>  
 
+        <script>
+            $(document).ready(function(){
+                jQuery.datetimepicker.setLocale('es');
+            });
+        </script>
         {% block control_modal %}
         <script>
             function abrir_modal(url){

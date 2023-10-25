@@ -72,7 +72,7 @@ class Producto(ClaseModelo):
     )
     codigo_barra = models.CharField(max_length=50)
     descripcion=models.CharField(max_length=200)
-    precio=models.FloatField()
+    precio=models.FloatField(default=0)
     existencia=models.IntegerField(null=True, blank=True)
     ultima_compra=models.DateField(null=True, blank=True)
 
