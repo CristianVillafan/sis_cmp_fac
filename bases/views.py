@@ -23,3 +23,7 @@ class Home(LoginRequiredMixin,generic.TemplateView):
 class HomeSinPrivilegios(LoginRequiredMixin, generic.TemplateView):
     login_url='bases:login'
     template_name='bases/sin_privilegios.html'
+
+class Config(LoginRequiredMixin, generic.TemplateView):
+    login_url='bases:login'
+    template_name='bases/config.html'
